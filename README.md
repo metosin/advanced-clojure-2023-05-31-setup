@@ -71,15 +71,8 @@ Varmista että sinulla on seuraavat työkalut asennettuna:
   Content-Type: application/json; charset=utf-8
   ...
 
-  $ just
-  just
-   Available recipes:
-      all-done
-      help
-      init
-      pull-clojure-deps
-      pull-docker-images
-      run-hello
+  $ just --version
+  just 1.13.0
   ```
 
 - Asennetut versiot voivat poiketa ylläolevasta jonkin verran
