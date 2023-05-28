@@ -1,0 +1,54 @@
+---
+version: '3.8'
+
+services:
+
+  # Postgres with a subset of MusicBrainz dataset:
+  db:
+    image: metosin/training-musicbrainz-db:latest
+    init: true
+    restart: always
+    ports:
+      - 127.0.0.1:5432:5432
+
+
+  flyway:
+    image: flyway/flyway:9
+    command: migrate
+    restart: on-failure
+    volumes:
+      - ./resources/migration/sql:/flyway/sql
+      - ./resources/migration/conf:/flyway/conf
+    depends_on:
+      - db
+
+
+  # Caddy static file server for album covers:
+  covers:
+    image: metosin/training-musicbrainz-covers:latest
+    init: true
+    restart: always
+    ports:
+      - 127.0.0.1:7000:8000
+
+
+  # Redis DB:
+  redis:
+    image: redis:7-bullseye
+    init: true
+    restart: always
+    ports:
+      - 127.0.0.1:6379:6379
+
+
+  # Proxy for serving static content and proxy /api/ trafic to application:
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 127.0.0.1:8000:8000
+    volumes:
+      - ./public:/public
+      - ./Caddyfile:/etc/caddy/Caddyfile
