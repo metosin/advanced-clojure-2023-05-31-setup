@@ -89,13 +89,22 @@ Varmista että sinulla on seuraavat työkalut asennettuna:
 Ladataan isot tietovarastot valmiiksi konellesi ja varmistetaan vielä että kaikki toimii. Huomaa että käytetty tietovarasto on iso, yhteensä n. 2GB. Sen lataaminen voi siis kestää ja siksi on hyvä että lataat sen ennen koulusta.
 
 - Kloonaa tämä projekti omalle koneellesi
-  ```bash
-  git clone git@github.com:metosin/advanced-clojure-2023-05-32-setup.git
-  ```
-- Aja alustus
-  ```bash
-  cd advanced-clojure-2023-05-32-setup
-  just init
-  ```
 
-Jos kaikki meni putkeen niin työkalut ovat kunnossa! Tervetuloa koulutukseen.
+```bash
+git clone git@github.com:metosin/advanced-clojure-2023-05-32-setup.git
+```
+
+- Aja alustus
+
+```bash
+cd advanced-clojure-2023-05-32-setup
+just init
+```
+
+Jos ruudulle tuli lopuksi:
+
+```
+Clojure running in Eclipse Adoptium version 20
+```
+
+niin kaiken pitäisi olla kunnossa. Tervetuloa koulutukseen!
